@@ -17,8 +17,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from SawadeeReservations import views as index_views
+from SawadeeAccounts import views as account_views
 
 urlpatterns = [
-    path('', index_views.index, name='index'),
+    path('hello/', index_views.index, name='index'),
+    path('account/', account_views.accounts, name='account'),
     path('admin/', admin.site.urls),
 ]
