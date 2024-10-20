@@ -5,3 +5,6 @@ from django.http import HttpResponse
 def home(request):
     context = {}
     return render(request, 'home.html', context)
+
+def menu(request):
+    return render(request, 'menu.html')
