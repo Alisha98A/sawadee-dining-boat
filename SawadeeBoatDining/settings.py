@@ -28,9 +28,10 @@ SECRET_KEY = 'django-insecure-!7!^1o95%m)phe8k3ws)zan=n=k=#hsge**2+0w8a@a0+by_4t
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost','.herokuapp.com', '8000-alisha98a-sawadeedining-t54kli0gwu1.ws-eu116.gitpod.io' ]
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost','.herokuapp.com' ]
 
+CSRF_TRUSTED_ORIGINS = [ 'https://8000-alisha98a-sawadeedining-t54kli0gwu1.ws-eu116.gitpod.io']
 
 # Application definition
 
@@ -98,7 +99,7 @@ WSGI_APPLICATION = 'SawadeeBoatDining.wsgi.application'
 #        'ENGINE': 'django.db.backends.sqlite3',
 #        'NAME': BASE_DIR / 'db.sqlite3',
 #    }
-#}
+# }
 
 DATABASES = {
     'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
@@ -151,3 +152,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 
 ACCOUNT_SIGNUP_REDIRECT_URL ='/'
+
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
