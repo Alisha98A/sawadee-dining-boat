@@ -1,1 +1,1 @@
-web: gunicorn sawadee-boat.wsgi
+web: gunicorn SawadeeBoatDining.wsgi
