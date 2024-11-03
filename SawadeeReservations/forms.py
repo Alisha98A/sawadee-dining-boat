@@ -36,3 +36,15 @@ class BookingAdminForm(forms.ModelForm):
         if booking_date and booking_date < timezone.now().date():
             raise forms.ValidationError("You cannot book for a date in the past.")
         return booking_date
+
+    def clean_booking_time(self):
+        booking_time = self.cleaned_data.get("booking_time")
+        booking_date = self.cleaned_data.get("booking_date")
+
+        if booking_date:
+            # Check if booking is for today
+            if booking_date == timezone.now().date():
+                current_time = timezone.now().time()
+                if booking_time < current_time:
+                    raise forms.ValidationError("This time slot has already passed for today.")
+        return booking_time
