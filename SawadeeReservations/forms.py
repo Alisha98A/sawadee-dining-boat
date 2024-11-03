@@ -30,3 +30,9 @@ class BookingAdminForm(forms.ModelForm):
     class Meta:
         model = Booking
         fields = '__all__'
+
+    def clean_booking_date(self):
+        booking_date = self.cleaned_data.get("booking_date")
+        if booking_date and booking_date < timezone.now().date():
+            raise forms.ValidationError("You cannot book for a date in the past.")
+        return booking_date
