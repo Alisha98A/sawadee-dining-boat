@@ -24,4 +24,6 @@ class Booking(models.Model):
         if not (4 <= self.number_of_guests <= 20):
             raise ValidationError("Number of guests must be between 4 and 20.")
 
- 
+    def save(self, *args, **kwargs):
+        self.clean()  # Call clean method before saving
+        super().save(*args, **kwargs)
