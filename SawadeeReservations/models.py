@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
+from django.utils import timezone
+from datetime import timedelta, time
 
 # Create your models here.
 class Booking(models.Model):
@@ -23,6 +25,19 @@ class Booking(models.Model):
         # Check that number of guests is within the allowed range
         if not (4 <= self.number_of_guests <= 20):
             raise ValidationError("Number of guests must be between 4 and 20.")
+
+        # Ensure booking duration is exactly 2 hours
+        end_time = self.booking_date + timedelta(hours=2)
+        if end_time.time() > time(22, 0):
+            raise ValidationError("Booking end time exceeds operating hours.")
+
+        # Check for overlapping bookings (2-hour slot uniqueness)
+        overlapping_bookings = Booking.objects.filter(
+            booking_date__lt=end_time,
+            booking_date__gte=self.booking_date
+        ).exclude(id=self.id)
+        if overlapping_bookings.exists():
+            raise ValidationError("The selected time slot is already booked.")
 
     def save(self, *args, **kwargs):
         self.clean()  # Call clean method before saving
