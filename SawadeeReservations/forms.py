@@ -48,3 +48,13 @@ class BookingAdminForm(forms.ModelForm):
                 if booking_time < current_time:
                     raise forms.ValidationError("This time slot has already passed for today.")
         return booking_time
+
+    def clean(self):
+        cleaned_data = super().clean()
+        date = cleaned_data.get("booking_date")
+        time_slot = cleaned_data.get("booking_time")
+
+        if date and time_slot:
+            # Combine date and time to form a datetime object for booking_date
+            cleaned_data["booking_date"] = datetime.combine(date, time_slot)
+        return cleaned_data
