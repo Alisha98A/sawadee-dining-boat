@@ -7,3 +7,6 @@ TIME_SLOTS = [
     for hour in range(10, 22, 2)
 ]
 
+# Define available guest options
+GUEST_OPTIONS = [(i, i) for i in range(4, 21)]  # Options from 4 to 20
+
