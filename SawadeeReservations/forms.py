@@ -1,5 +1,7 @@
+from django import forms
+from .models import Booking
 from datetime import time, datetime
-
+from django.utils import timezone
 
 # Define available time slots
 TIME_SLOTS = [
@@ -10,3 +12,21 @@ TIME_SLOTS = [
 # Define available guest options
 GUEST_OPTIONS = [(i, i) for i in range(4, 21)]  # Options from 4 to 20
 
+class BookingAdminForm(forms.ModelForm):
+    booking_date = forms.DateField(
+        widget=forms.SelectDateWidget(),
+        label="Booking Date",
+        initial=timezone.now().date(),  # Set initial value to today
+    )
+    booking_time = forms.TimeField(
+        widget=forms.Select(choices=TIME_SLOTS),
+        label="Time Slot",
+    )
+    number_of_guests = forms.ChoiceField(
+        choices=GUEST_OPTIONS,
+        label="Number of Guests",
+    )
+
+    class Meta:
+        model = Booking
+        fields = '__all__'
