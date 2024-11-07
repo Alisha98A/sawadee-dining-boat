@@ -19,7 +19,7 @@ from django.urls import path, include
 from SawadeeReservations import views as index_views
 
 urlpatterns = [
-    path('', include('SawadeeReservations.urls')),
     path('admin/', admin.site.urls),
+    path('', include('SawadeeReservations.urls')),
     path('accounts/', include('allauth.urls')),
 ]
