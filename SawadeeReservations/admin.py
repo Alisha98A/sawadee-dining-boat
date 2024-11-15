@@ -9,8 +9,4 @@ class BookingAdmin(admin.ModelAdmin):
     list_filter = ('booking_date',)
     ordering = ('booking_date',)
 
-    def get_queryset(self, request):
-        qs = super().get_queryset(request)
-        # Filter to only show upcoming bookings
-        return qs.filter(booking_date__gte=timezone.now())
 admin.site.register(Booking, BookingAdmin)
