@@ -35,3 +35,10 @@ header p {
     margin-bottom: 0.5rem;
     font-size: 1rem;
 }
+
+/* ===== Navbar ===== */
+.navbar {
+    background: #916951;
+    overflow: hidden;
+    margin-top: 1rem;
+}
