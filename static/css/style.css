@@ -79,3 +79,18 @@ header p {
     box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2); 
     border-radius: 12px; 
 }
+
+/* ===== Content ===== */
+.content-container {
+    padding: 2rem;
+}
+
+/* ===== Footer ===== */
+footer {
+    background: #916951; 
+    color: #e4f1fe; 
+    text-align: center;
+    padding: 1rem 0;
+    font-size: 0.9rem;
+    margin-top: auto; 
+}
