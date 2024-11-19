@@ -42,3 +42,17 @@ header p {
     overflow: hidden;
     margin-top: 1rem;
 }
+
+/* Style element within the navbar to align items in a row. */
+.navbar-menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+/* Add padding to each element within the navbar */
+.navbar-menu li {
+    padding: 1rem;
+}
