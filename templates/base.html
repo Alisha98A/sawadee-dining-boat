@@ -2,22 +2,49 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head>    
+    <!-- Meta Information -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>{% block title %}Sawadee Dining Boat{% endblock title %}</title>
+        <!-- Styles -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
-<!-- Header and nav-->
-    {% block content %}
-    {% endblock content %}
-<!-- Footer goes here-->
-<footer>
-    <!-- Footer goes here -->
-    <p>&copy; 2024 Sawadee Dining Boat. This website is for educational purposes only</p>
-</footer>
+    <!-- ===== Header Section ===== -->
+    <header>
+        <div class="container">
+            <h1>Sawadee Dining Boat</h1>
+            <p>Experience fine dining on a journey between Stockholm City and Värmdö</p>
+        </div>
+        <nav class="navbar">
+            <ul class="navbar-menu">
+                <li><a href="">Home</a></li>
+                <li><a href="">Menu</a></li>
+                <li><a href="">Bookings</a></li>
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'account_logout' %}">Logout</a></li>
+                {% else %}
+                    <li><a href="{% url 'account_login' %}">Login</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
 
-    <script src="{% static 'js/script.js' %}">
+    <!-- ===== Main Content Section ===== -->
+    <main>
+        <div class="content-container">
+            {% block content %}
+            {% endblock content %}
+        </div>
+    </main>
+
+    <!-- ===== Footer Section ===== -->
+    <footer>
+        <p>&copy; 2024 Sawadee Dining Boat. This website is for educational purposes only.</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="{% static 'js/script.js' %}"></script>
 </body>
 </html>
